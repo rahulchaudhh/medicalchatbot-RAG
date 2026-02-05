@@ -28,4 +28,6 @@ medicalchatbot-RAG/
 │
 └── data/
     └── Medical_book.pdf   # Source medical data for the RAG knowledge base
+
+    
 <img width="1212" height="805" alt="Screenshot 2026-02-06 at 12 19 46 AM" src="https://github.com/user-attachments/assets/8facea22-2ae4-4d44-906c-9eb3e51cf40a" />

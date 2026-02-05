@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedBot - Premium Medical Assistant</title>
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="main-container d-flex justify-content-center align-items-center">
+        <div class="chat-card shadow-lg">
+            
+            <!-- Header -->
+            <div class="chat-header d-flex align-items-center px-4 py-3">
+                <div class="position-relative">
+                    <img src="https://cdn-icons-png.flaticon.com/512/387/387569.png" class="user-avatar rounded-circle">
+                    <span class="status-dot"></span>
+                </div>
+                <div class="ms-3">
+                    <h5 class="mb-0 fw-semibold text-white">Medical Assistant</h5>
+                    <small class="text-white-50">Always here to help</small>
+                </div>
+                <div class="ms-auto action-buttons">
+                    <i class="fas fa-ellipsis-v text-white-50"></i>
+                </div>
+            </div>
+
+            <!-- Chat Body -->
+            <div id="messageFormeight" class="chat-body px-4 py-4">
+                <!-- Messages will appear here -->
+                <div class="d-flex justify-content-start mb-4">
+                    <div class="img_cont_msg">
+                        <img src="https://cdn-icons-png.flaticon.com/512/387/387569.png" class="user-avatar-sm rounded-circle">
+                    </div>
+                    <div class="msg_cotainer">
+                        Hello! I am your medical assistant. How can I help you today?
+                        <span class="msg_time">Now</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Footer -->
+            <div class="chat-footer px-4 py-3">
+                <form id="messageArea" class="d-flex align-items-center">
+                    <input type="text" id="text" name="msg" class="form-control me-3" placeholder="Type your health query..." autocomplete="off" required>
+                    <button type="submit" id="send" class="btn btn-primary send-btn rounded-circle d-flex justify-content-center align-items-center">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#messageArea").on("submit", function(event) {
+                event.preventDefault();
+                
+                const date = new Date();
+                const hour = date.getHours();
+                const minute = date.getMinutes().toString().padStart(2, '0');
+                const str_time = hour + ":" + minute;
+                var rawText = $("#text").val();
+
+                var userHtml = '<div class="d-flex justify-content-end mb-4 animate-fade-in"><div class="msg_cotainer_send">' + rawText + '<span class="msg_time_send">' + str_time + '</span></div><div class="img_cont_msg ms-2"><img src="https://i.ibb.co/d5b84Xw/Untitled-design.png" class="user-avatar-sm rounded-circle"></div></div>';
+                
+                $("#text").val("");
+                $("#messageFormeight").append(userHtml);
+                scrollToBottom();
+
+                $.ajax({
+                    data: {
+                        msg: rawText,    
+                    },
+                    type: "POST",
+                    url: "/get",
+                }).done(function(data) {
+                    var botHtml = '<div class="d-flex justify-content-start mb-4 animate-fade-in"><div class="img_cont_msg me-2"><img src="https://cdn-icons-png.flaticon.com/512/387/387569.png" class="user-avatar-sm rounded-circle"></div><div class="msg_cotainer">' + data + '<span class="msg_time">' + str_time + '</span></div></div>';
+                    $("#messageFormeight").append(botHtml);
+                    scrollToBottom();
+                });
+            });
+
+            function scrollToBottom() {
+                var chatBody = document.getElementById("messageFormeight");
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }
+        });
+    </script>
+</body>
+</html>

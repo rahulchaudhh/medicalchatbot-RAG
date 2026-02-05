@@ -1,0 +1,10 @@
+venv
+venv_stable
+.venv
+__pycache__
+*.pyc
+.env
+.DS_Store
+.ipynb_checkpoints
+data/
+research/

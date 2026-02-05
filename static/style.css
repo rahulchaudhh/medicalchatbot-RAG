@@ -1,0 +1,196 @@
+/* Modern Reset & Base Styles */
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: #0f172a; /* Dark sleek background */
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+}
+
+/* Main Container */
+.main-container {
+    height: 100vh;
+    padding: 20px;
+}
+
+/* Chat Card - Glassmorphism */
+.chat-card {
+    width: 100%;
+    max-width: 450px;
+    height: 85vh;
+    background: rgba(255, 255, 255, 0.05); /* Glass effect */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header Section */
+.chat-header {
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.user-avatar {
+    height: 50px;
+    width: 50px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    padding: 2px;
+}
+
+.status-dot {
+    position: absolute;
+    bottom: 0;
+    right: 2px;
+    height: 12px;
+    width: 12px;
+    background-color: #10b981; /* Emerald green for active */
+    border-radius: 50%;
+    border: 2px solid #1e293b;
+}
+
+.action-buttons i {
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.action-buttons i:hover {
+    color: #fff;
+}
+
+/* Chat Body */
+.chat-body {
+    flex: 1;
+    overflow-y: auto;
+    background: transparent;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.2) transparent;
+}
+
+/* Scrollbar Styling */
+.chat-body::-webkit-scrollbar {
+    width: 6px;
+}
+.chat-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+.chat-body::-webkit-scrollbar-thumb {
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 20px;
+}
+
+/* User & Bot Avatars in Chat */
+.user-avatar-sm {
+    height: 35px;
+    width: 35px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.img_cont_msg {
+    height: 35px;
+    width: 35px;
+    flex-shrink: 0;
+}
+
+/* Message Bubbles */
+.msg_cotainer {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); /* Blue gradient */
+    color: #fff;
+    border-radius: 12px 12px 12px 2px;
+    padding: 12px 16px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    position: relative;
+    max-width: 80%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.msg_cotainer_send {
+    background: linear-gradient(135deg, #475569 0%, #334155 100%); /* Slate gradient for user */
+    color: #e2e8f0;
+    border-radius: 12px 12px 2px 12px;
+    padding: 12px 16px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    position: relative;
+    max-width: 80%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Timestamp */
+.msg_time {
+    position: absolute;
+    left: 0;
+    bottom: -18px;
+    color: rgba(255,255,255,0.4);
+    font-size: 0.7rem;
+    width: 100px;
+}
+
+.msg_time_send {
+    position: absolute;
+    right: 0;
+    bottom: -18px;
+    color: rgba(255,255,255,0.4);
+    font-size: 0.7rem;
+    width: 100px;
+    text-align: right;
+}
+
+/* Footer Section */
+.chat-footer {
+    background: rgba(255, 255, 255, 0.03);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.form-control {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 25px;
+    color: #fff;
+    padding: 12px 20px;
+}
+
+.form-control:focus {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #3b82f6;
+    box-shadow: none;
+    color: #fff;
+}
+
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.send-btn {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    border: none;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.send-btn:hover {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+}
+
+.send-btn i {
+    font-size: 1.1rem;
+    margin-right: 2px; /* optical adjustment */
+    margin-top: 2px;
+}
+
+/* Animations */
+.animate-fade-in {
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
